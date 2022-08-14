@@ -1,20 +1,31 @@
-let express = require("express");
-let app = express();
-let fs = require("fs");
-let bodyParser = require("body-parser");
-let compression = require("compression");
-let helmet = require("helmet");
+const express = require("express");
+const app = express();
+const fs = require("fs");
+const bodyParser = require("body-parser");
+const compression = require("compression");
+const helmet = require("helmet");
 app.use(helmet());
+const session = require('express-session');
+const FileStore = require('session-file-store')(session)
 
-let indexRouter = require("./routes/index");
-let topicRouter = require("./routes/topic");
+const indexRouter = require("./routes/index");
+const topicRouter = require("./routes/topic");
+const userRouter = require('./routes/user');
 
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(compression());
 
+app.use(session({
+  secret: 'asadlfkj!@#!@#dfgasdg',
+  resave: false,
+  saveUninitialized: true,
+  store:new FileStore()
+}))
+
 app.use("/", indexRouter);
 app.use("/topic", topicRouter);
+app.use('/user', userRouter);
 
 app.use(function (req, res, next) {
   res.status(404).send("Sorry cant find that!");

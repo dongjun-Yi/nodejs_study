@@ -2,6 +2,7 @@ let express = require("express");
 let router = express.Router();
 let db = require("../lib/db.js");
 let list = require("../lib/list.js");
+let auth  = require('../lib/auth.js');
 
 let html;
 router.get("/", function (request, response) {
@@ -9,7 +10,7 @@ router.get("/", function (request, response) {
     if (error) {
       throw error;
     }
-    html = list.renderList(data);
+    html = list.renderList(data, auth.statusUI(request, response));
     response.send(html);
   });
 });
