@@ -12,4 +12,6 @@ db.js는 정보때문에 template만 올림
 | bigint | varchar(15) | varchar(255) | varchar(255) |
 
 -----
-로그인 세션 구현
+* 로그인 세션 구현
+
+사용자에 따라 기능 제한(수정, 삭제 권한)
