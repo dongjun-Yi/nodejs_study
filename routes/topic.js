@@ -19,7 +19,8 @@ router.post("/create_process", function (request, response) {
       throw error;
     }
     data.forEach((element) => {
-      id++;
+      if(element.user_id >= id)
+        id=element.user_id;
     });
     let sql = `INSERT INTO user (user_id, username, password, email) VALUES(${
       id + 1

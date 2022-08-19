@@ -38,13 +38,11 @@ router.post("/login_process", function (request, response) {
         request.session.user_id = element.user_id;
         request.session.nickname = element.username;
         request.session.save(function () {
-          response.redirect(`/`);
+          response.redirect('/');
         });
       }
-      else{
-        response.send('Who?');
-      }
     });
+    //response.send('Who?');
   });
 });
 
