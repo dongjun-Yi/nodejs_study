@@ -24,6 +24,7 @@ app.use(session({
 }))
 
 app.use("/", indexRouter);
+app.use("/css", express.static(__dirname+"/css"));
 app.use("/topic", topicRouter);
 app.use('/user', userRouter);
 

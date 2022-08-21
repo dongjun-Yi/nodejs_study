@@ -1,15 +1,8 @@
-var express = require("express");
-var router = express.Router();
-var path = require("path");
-var fs = require("fs");
-var sanitizeHtml = require("sanitize-html");
+const express = require("express");
+const router = express.Router();
+const path = require("path");
+const sanitizeHtml = require("sanitize-html");
 const db = require("../lib/db");
-
-var authData = {
-  email: "egoing777@gmail.com",
-  password: "111111",
-  nickname: "egoing",
-};
 
 router.get("/login", function (request, response) {
   let html = `
